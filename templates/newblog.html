@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<!Doctype html>
+<html>
+<header>
+    <head>   
+            <title>({My Blog})</title>    
+    </head>
+</header>
+
+<body>
+    <form action="/newblog", method ='POST'>
+        <label> Title
+        <input name=title type=text/>
+    </label>
+        
+        <br>
+        <label> Blog Body
+        <input name=body type=text/>
+    </label>
+
+        <input type="submit" value='submit' />
+    </form>
+    
+    <p>{{ errormsg}}</p>
+</body>
+<footer>
+    Build-A-Blog Assignment
+</footer>
+</html>
+
+{% endblock %}
