@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://build-a-blog:2008@localhost:3306/build-a-blog'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://blogz:1990@localhost:3306/blogz'
 app.config['SQLALCHEMY_ECHO'] = True
 db = SQLAlchemy(app)
 
@@ -95,15 +95,51 @@ def validate_form():
         verify_password_error ="Passwords don't match. Please try again."
         return render_template("the_form.html", password_error= password_error, verify_password_error = verify_password_error) 
         
-     else:
+    else:
             
         if ' ' in password:
          password_error = "not a valid password. There can be no spaces within your password and it must be between 2-20 characters"
          password = ""
          return render_template("the_form.html", password_error= password_error, password=password) 
-        
 
 
+
+class User(db.Model):
+
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(120))
+    body = db.Column(db.String(120))
+
+    def __init__(self, title, body):
+        self.title = title
+        self.body = body
+
+
+
+
+
+
+
+@app.route('/index', methods=['POST', 'GET'])
+def index():
+
+
+@app.route('/signup', methods=['POST', 'GET'])
+def signup():
+
+@app.route('/login', methods=['POST', 'GET'])
+def login():
+    
+
+
+
+
+    login = mainblog.query.filter_by(completed=False).all()
+    completed_blogs = mainblog.query.filter_by(completed=True).all()
+    return render_template('base.html',title="Let's Build A Blog!", 
+        blogs=blogs, completed_blogs=completed_blogs)@app.route('/delete-task', methods=['POST'])
+
+def logout():
 
 
 
